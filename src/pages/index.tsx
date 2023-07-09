@@ -1,18 +1,11 @@
-import MessageList from "@/components/MessageList";
-import NewMessageForm from "@/components/NewMessageForm";
-import { useState } from "react";
+import UploaderContainer from "@/containers/UploaderContainer";
+import { uploadImage } from "@/services/upload";
+
 
 export default function Home() {
-  const [messages, setMessages] = useState<Array<string>>([]);
-
-  function handleSend(newMessage: string) {
-    setMessages([newMessage, ...messages]);
-  }
-
   return (
-    <>
-      <NewMessageForm onSend={handleSend} />
-      <MessageList messages={messages} />
-    </>
+    <div className="main">
+      <UploaderContainer uploadService={uploadImage} />
+    </div>
   );
 }
