@@ -1,12 +1,15 @@
-
-export async function uploadImage(image: File): Promise<string> {
-  console.log("call endpoint...");
+export type UploadResponse = {
+  url: string;
+  path: string;
+};
+export async function uploadImage(image: File): Promise<UploadResponse> {
   const body = new FormData();
   body.append("image", image);
-  const response = await fetch("/api/upload", {
+  const response: Response = await fetch("/api/upload", {
     method: "POST",
     body,
   });
 
-  return URL.createObjectURL(image);
+  const data: UploadResponse = await response.json();
+  return data;
 }

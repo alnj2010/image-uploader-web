@@ -2,21 +2,22 @@ import Loading from "@/components/Loading";
 import { useState } from "react";
 import ChooseImageContainer from "../ChooseImageContainer";
 import DisplayImageContainer from "../DisplayImageContainer";
+import { UploadResponse } from "@/services/upload";
 
 type UploaderContainerProps = {
-  uploadService: (file: File) => Promise<string>;
+  uploadService: (file: File) => Promise<UploadResponse>;
 };
 
 export default function UploaderContainer({
   uploadService,
 }: UploaderContainerProps) {
   const [load, setLoad] = useState<boolean>(false);
-  const [link, setLink] = useState<string | null>(null);
+  const [link, setLink] = useState<UploadResponse | null>(null);
 
   async function uploadHandler(file: File) {
     setLoad(true);
-    const linkImage = await uploadService(file);
-    setLink(linkImage);
+    const data = await uploadService(file);
+    setLink(data);
     setLoad(false);
   }
 

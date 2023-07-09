@@ -1,9 +1,10 @@
 import Image from "next/image";
 import CopyClickBoard from "../../components/CopyClickBoard";
 import SuccessMessage from "@/components/SuccessMessage";
+import { UploadResponse } from "@/services/upload";
 
 type DisplayImageContainerProps = {
-  link: string;
+  link: UploadResponse;
 };
 
 export default function DisplayImageContainer({
@@ -16,7 +17,7 @@ export default function DisplayImageContainer({
       </div>
       
       <Image
-        src={link}
+        src={link.path}
         alt="imagen uploded"
         data-testid="image-src"
         className="display-image-container__image"
@@ -24,7 +25,7 @@ export default function DisplayImageContainer({
         height={500}
       />
       <div className="display-image-container__copyclickboard">
-        <CopyClickBoard link={link} />
+        <CopyClickBoard link={link.url} />
       </div>
     </div>
   );

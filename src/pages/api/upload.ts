@@ -3,6 +3,7 @@ import { IncomingForm, File } from "formidable";
 import fs from "fs";
 
 type Data = {
+  path: string;
   url: string;
 };
 
@@ -11,18 +12,30 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const form = new IncomingForm();
-  const url: string = await new Promise(async (resolve, reject) => {
-    form.parse(req, async function (err, fields, files) {
-      const image = files.image as File;
-      const data = fs.readFileSync(image.filepath);
-      const url = `./public/uploads/${image.newFilename}`;
-      fs.writeFileSync(url, data);
-      await fs.unlinkSync(image.filepath);
 
-      resolve("url");
+  const image: File = await new Promise(async (resolve, reject) => {
+    form.parse(req, async function (err, fields, files) {
+      if (err) {
+        reject(err);
+      }
+      const file = files.image as File;
+      resolve(file);
     });
   });
-  res.status(201).json({ url: url });
+  const filename = `${image.newFilename}_${image.originalFilename}`;
+  const path = `/upload/${filename}`;
+  const url = `${req.headers.host}${path}`;
+  const data = fs.readFileSync(image.filepath);
+  const destination = `public${path}`;
+  if (!fs.existsSync('public/upload')){
+    fs.mkdirSync('public/upload');
+}
+  fs.writeFileSync(destination, data);
+  await fs.unlinkSync(image.filepath);
+  res.status(201).json({
+    path,
+    url,
+  });
 }
 
 export const config = {
