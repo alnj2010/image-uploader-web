@@ -1,0 +1,21 @@
+.select-image-button {
+    width: 101px;
+    height: 32px;
+    border-radius: 8px;
+    background: #2f80ed;
+  
+    color: #ffffff;
+    font-family: Noto Sans;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: -0.035em;
+    text-align: center;
+  
+    cursor: pointer;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

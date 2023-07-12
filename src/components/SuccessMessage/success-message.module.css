@@ -1,0 +1,19 @@
+.success-message {
+  text-align: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7px;
+}
+
+.text {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: -0.035em;
+  text-align: center;
+  color: #4f4f4f;
+}

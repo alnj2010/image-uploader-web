@@ -1,0 +1,44 @@
+.copy-click-board {
+  background: #f6f8fb;
+
+  height: 34px;
+  border-radius: 8px;
+
+  border: 1px solid #e0e0e0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.url {
+  font-family: Poppins;
+  font-size: 8px;
+  line-height: 12px;
+  letter-spacing: -0.035em;
+  text-align: center;
+  margin-left: 7px;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-right: 14px;
+  white-space: nowrap;
+}
+
+.button {
+  font-family: Poppins;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 12px;
+  letter-spacing: -0.035em;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+
+  width: 74px;
+  height: 30px;
+  border-radius: 8px;
+  background: #2f80ed;
+
+  color: #ffffff;
+}

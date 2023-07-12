@@ -1,0 +1,27 @@
+.title {
+  color: #4f4f4f;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: -0.035em;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  color: #828282;
+  font-family: Poppins;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: -0.035em;
+  text-align: center;
+  margin-bottom: 29px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
