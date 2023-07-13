@@ -13,9 +13,13 @@ export default function DropZone({ uploadHandler }: DropZoneProps) {
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-  
+
   return (
-    <div {...getRootProps({ className: styles.dropzone })}>
+    <div
+      {...getRootProps({
+        className: `${styles.dropzone} ${isDragActive && styles.dragactive}`,
+      })}
+    >
       <input {...getInputProps()} />
       <>
         <Image
