@@ -12,6 +12,7 @@ export default function Home() {
   const [imageURLs, setImageURLs] = useState<ImageURLs | null>(null);
 
   async function uploadHandler(file: File) {
+    console.log(file);
     setLoad(true);
     try {
       const imageURLs: ImageURLs = await upload(file);
@@ -24,7 +25,7 @@ export default function Home() {
 
   return (
     <main className={styles["uploader-container"]}>
-      {!imageURLs && !load && <ChooseImageContainer uploadHandler={uploadHandler} />}
+     {!imageURLs && !load && <ChooseImageContainer uploadHandler={uploadHandler} />}
       {!imageURLs && load && <Loading />}
       {imageURLs && !load && <DisplayImageContainer imageURLs={imageURLs} />}
     </main>

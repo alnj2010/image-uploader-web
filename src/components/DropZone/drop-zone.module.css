@@ -1,0 +1,24 @@
+.dropzone {
+  background-color: #f6f8fb;
+  height: 219px;
+  border: 1px dashed #97bef4;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.image {
+  margin-bottom: 37px;
+}
+
+.text {
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+
+  color: #bdbdbd;
+}

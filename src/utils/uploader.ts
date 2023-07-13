@@ -12,7 +12,6 @@ const s3 = new S3({
 });
 
 export async function upload(file: File): Promise<ImageURLs> {
-  console.log(process.env);
   const params = {
     Bucket: process.env.NEXT_PUBLIC_S3_BUCKET as string,
     Key: file.name,
