@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import styles from "./drop-zone.module.css";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
