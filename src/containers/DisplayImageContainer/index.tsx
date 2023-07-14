@@ -17,14 +17,16 @@ export default function DisplayImageContainer({
         <SuccessMessage />
       </div>
 
-      <Image
-        src={imageURLs.temporalUrl}
-        alt="imagen uploded"
-        data-testid="image-src"
-        className={styles.image}
-        width={500}
-        height={500}
-      />
+      <div className={styles.imagecontainer}>
+        <Image
+          src={imageURLs.temporalUrl}
+          alt="imagen uploded"
+          data-testid="image-src"
+          className={styles.image}
+          width={500}
+          height={500}
+        />
+      </div>
       <div className={styles.copyclickboard}>
         <CopyClickBoard link={imageURLs.url} />
       </div>
