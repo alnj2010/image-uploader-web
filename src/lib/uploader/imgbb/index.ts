@@ -7,7 +7,7 @@ export class ImgbbUploader implements Uploader {
     const body = new FormData();
     body.append("image", file);
 
-    const response: any = await fetch(
+    const response: Response = await fetch(
       `https://api.imgbb.com/1/upload?expiration=${600}&key=${
         process.env.IMGBB_API_KEY
       }`,
@@ -17,6 +17,8 @@ export class ImgbbUploader implements Uploader {
       }
     );
 
-    return response.data.url;
+    const payload = await response.json();
+
+    return payload.data.url;
   }
 }
