@@ -5,14 +5,14 @@ import styles from "./page.module.css";
 import ChooseImageContainer from "@/containers/ChooseImageContainer";
 import DisplayImageContainer from "@/containers/DisplayImageContainer";
 import { useState } from "react";
-import { ImageURLs, upload } from "@/utils/uploader";
+import upload from "@/services/upload";
+import { ImageURLs } from "@/domain/types";
 
 export default function Home() {
   const [load, setLoad] = useState<boolean>(false);
   const [imageURLs, setImageURLs] = useState<ImageURLs | null>(null);
 
   async function uploadHandler(file: File) {
-    console.log(file);
     setLoad(true);
     try {
       const imageURLs: ImageURLs = await upload(file);
@@ -25,7 +25,9 @@ export default function Home() {
 
   return (
     <main className={styles["uploader-container"]}>
-     {!imageURLs && !load && <ChooseImageContainer uploadHandler={uploadHandler} />}
+      {!imageURLs && !load && (
+        <ChooseImageContainer uploadHandler={uploadHandler} />
+      )}
       {!imageURLs && load && <Loading />}
       {imageURLs && !load && <DisplayImageContainer imageURLs={imageURLs} />}
     </main>
