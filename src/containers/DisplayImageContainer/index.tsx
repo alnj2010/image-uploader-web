@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CopyClickBoard from "../../components/CopyClickBoard";
+import CopyClickBoard from "@/components/CopyClickBoard";
 import SuccessMessage from "@/components/SuccessMessage";
 import styles from "./display-image-container.module.css";
 import { ImageURLs } from "@/domain/types";

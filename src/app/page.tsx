@@ -2,7 +2,7 @@
 
 import Loading from "@/components/Loading";
 import styles from "./page.module.css";
-import ChooseImageContainer from "@/containers/ChooseImageContainer";
+import ChooseImageContainer from "@/containers/ChooseImageContainer/index";
 import DisplayImageContainer from "@/containers/DisplayImageContainer";
 import { useState } from "react";
 import upload from "@/services/upload";
