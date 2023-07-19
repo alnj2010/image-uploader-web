@@ -14,7 +14,7 @@ const config = {
   testEnvironment: 'jest-environment-jsdom',
   collectCoverage: true,
   collectCoverageFrom: ["<rootDir>/src/**"],
-  coveragePathIgnorePatterns:["<rootDir>/src/app"],
+  coveragePathIgnorePatterns: ["<rootDir>/src/lib", "<rootDir>/src/app/layout.tsx"],
   coverageThreshold: {
     global: {
       lines: 90

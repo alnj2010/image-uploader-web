@@ -2,17 +2,19 @@ import { ChangeEvent } from "react";
 import styles from "./select-image-button.module.css";
 
 type SelectImageButtonProps = {
-  uploadHandler: (file: File) => void;
+  validateAndUploadHandler: (file: File | null, isThereError: boolean) => void;
 };
 
-
-
 export default function SelectImageButton({
-  uploadHandler,
+  validateAndUploadHandler,
 }: SelectImageButtonProps) {
   const handleImageSelect = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      uploadHandler(e.target.files[0]);
+    const files: FileList | null = e.target.files;
+    const allowedExtensions = /(\.png|\.gif|\.jpeg|\.jpg|\.svg)$/i;
+    if (files && files.length === 1 && allowedExtensions.exec(files[0].name)) {
+      validateAndUploadHandler(files[0], false);
+    } else {
+      validateAndUploadHandler(null, true);
     }
   };
 
@@ -22,8 +24,8 @@ export default function SelectImageButton({
       htmlFor="contained-button-file"
     >
       <input
+        multiple={false}
         type="file"
-        accept="image/*"
         style={{ display: "none" }}
         onChange={handleImageSelect}
         id="contained-button-file"

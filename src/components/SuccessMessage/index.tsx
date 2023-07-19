@@ -7,12 +7,13 @@ export default function SuccessMessage() {
     <div className={styles["success-message"]}>
       <div className={styles.icon}> 
       <Image
+      data-testid="success-image" 
         src="/correct.png"
         alt="correct icon"
         width={42}
         height={42}
       /></div>
-      <div className={styles.text}>Uploaded Successfully!</div>
+      <div data-testid="success-text" className={styles.text}>Uploaded Successfully!</div>
     </div>
   );
 }
