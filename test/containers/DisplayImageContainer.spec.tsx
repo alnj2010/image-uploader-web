@@ -1,16 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import DisplayImageContainer from "@/containers/DisplayImageContainer";
 import "@testing-library/jest-dom";
-import { ImageURLs } from "@/domain/types";
-
-const imageURLDummy: ImageURLs = {
-  url: "urlDummy",
-  temporalUrl: "/temporal",
-};
+import { imageURLsDummy } from "../dummies";
 
 describe("DisplayImageContainer component", () => {
   beforeEach(() => {
-    render(<DisplayImageContainer imageURLs={imageURLDummy} />);
+    render(<DisplayImageContainer imageURLs={imageURLsDummy} />);
   });
 
   it("Should render properly", () => {
@@ -20,7 +15,7 @@ describe("DisplayImageContainer component", () => {
 
   it("Should show url", async () => {
     expect(screen.getByTestId("url-image")).toHaveTextContent(
-      imageURLDummy.url
+      imageURLsDummy.url
     );
   });
 });

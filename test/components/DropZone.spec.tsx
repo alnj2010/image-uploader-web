@@ -1,20 +1,7 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import DropZone from "@/components/DropZone";
 import "@testing-library/jest-dom";
-
-function mockData(files: File[]) {
-  return {
-    dataTransfer: {
-      files,
-      items: files.map((file) => ({
-        kind: "file",
-        type: file.type,
-        getAsFile: () => file,
-      })),
-      types: ["Files"],
-    },
-  };
-}
+import { filesToDataEvent, webImageDummy, webJSONFileDummy } from "../dummies";
 
 describe("DropZone component", () => {
   let validateAndUploadHandler: jest.Mock;
@@ -31,30 +18,21 @@ describe("DropZone component", () => {
   });
 
   it("Should upload a image", async () => {
-    const file = new File([new Blob()], "dummy.png", {
-      type: "image/*",
-    });
-    const data = mockData([file]);
+    const data = filesToDataEvent([webImageDummy]);
     const dropZone = screen.getByTestId("dropzone");
     await act(() => fireEvent.drop(dropZone, data));
     expect(validateAndUploadHandler).toHaveBeenCalled();
   });
 
   it("Should return a error message when upload a file different to images", async () => {
-    const file = new File([JSON.stringify({ ping: true })], "ping.json", {
-      type: "application/json",
-    });
-    const data = mockData([file]);
+    const data = filesToDataEvent([webJSONFileDummy]);
     const dropZone = screen.getByTestId("dropzone");
     await act(() => fireEvent.drop(dropZone, data));
     expect(validateAndUploadHandler).toHaveBeenCalledWith(null, true);
   });
 
   it("Should return error message when upload multiples images", async () => {
-    const file = new File([new Blob()], "dummy.png", {
-      type: "image/*",
-    });
-    const data = mockData([file, file]);
+    const data = filesToDataEvent([webImageDummy, webImageDummy]);
     const dropZone = screen.getByTestId("dropzone");
     await act(() => fireEvent.drop(dropZone, data));
     expect(validateAndUploadHandler).toHaveBeenCalledWith(null, true);

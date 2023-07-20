@@ -1,7 +1,8 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import SelectImageButton from "@/components/SelectImageButton";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
+import { webImageDummy, webJSONFileDummy } from "../dummies";
 
 describe("SelectImageButton component", () => {
   let validateAndUploadHandler: jest.Mock;
@@ -17,20 +18,14 @@ describe("SelectImageButton component", () => {
   });
 
   it("Should upload a image", async () => {
-    const file = new File([new Blob()], "dummy.png", {
-      type: "image/*",
-    });
     const button = screen.getByTestId("upload-button");
-    await userEvent.upload(button, file);
-    expect(validateAndUploadHandler).toHaveBeenCalledWith(file, false);
+    await userEvent.upload(button, webImageDummy);
+    expect(validateAndUploadHandler).toHaveBeenCalledWith(webImageDummy, false);
   });
 
   it("Should return a error message when upload a file different to images", async () => {
-    const file = new File([JSON.stringify({ ping: true })], "ping.json", {
-      type: "application/json",
-    });
     const button = screen.getByTestId("upload-button");
-    await userEvent.upload(button, file);
+    await userEvent.upload(button, webJSONFileDummy);
     expect(validateAndUploadHandler).toHaveBeenCalledWith(null, true);
   });
 });
