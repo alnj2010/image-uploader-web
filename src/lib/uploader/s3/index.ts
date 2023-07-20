@@ -1,4 +1,4 @@
-import { Uploader } from "@/domain/uploader.interface";
+import { Uploader, File } from "@/domain/uploader.interface";
 import { S3 } from "aws-sdk";
 
 export class S3Uploader implements Uploader {
@@ -13,13 +13,10 @@ export class S3Uploader implements Uploader {
   }
 
   async upload(file: File): Promise<string> {
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
     const params = {
       Bucket: process.env.S3_BUCKET as string,
-      Key: file.name,
-      Body: buffer,
+      Key: file.filename,
+      Body: file.buffer,
     };
 
     try {
