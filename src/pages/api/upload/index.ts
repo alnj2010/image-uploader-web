@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { NextApiRequest, NextApiResponse } from "next";
 import uploader from "@/lib/uploader";
 import { getImage } from "@/lib/parserForm";
@@ -15,9 +14,15 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const image: File = await getImage(req);
-    const url = await uploader.upload(image);
-    res.status(201).json(url);
+    try {
+      const image: File = await getImage(req);
+      const url = await uploader.upload(image);
+      res.status(201).json(url);
+    } catch (error: any) {
+      res
+        .status(error.codeStatus ?? 500)
+        .send(error.message ?? "internal server error");
+    }
   } else {
     res.status(404).send("not found");
   }

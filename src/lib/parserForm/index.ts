@@ -11,6 +11,11 @@ export function getImage(req: NextApiRequest): Promise<File> {
       if (err) {
         reject(err);
       }
+
+      if (!files.image) {
+        reject({ codeStatus: 400, message: "bad request" });
+      }
+
       const buffer = fs.readFileSync((files.image as FormidableFile).filepath);
       resolve({
         filename:
