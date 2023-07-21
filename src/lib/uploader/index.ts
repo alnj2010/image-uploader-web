@@ -1,6 +1,6 @@
 import { ImgbbUploader } from "./imgbb";
 import { S3Uploader } from "./s3";
 
-const uploader = new ImgbbUploader();
+const uploader = new S3Uploader();
 
 export default uploader;
