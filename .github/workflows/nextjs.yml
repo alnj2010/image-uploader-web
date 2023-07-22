@@ -1,11 +1,11 @@
-# workflow for building Next.js to GitHub Pages
+# workflow for building Next.js
 #
 name: Build Next.js
 
 on:
   pull_request:
-    types: ["opened","reopened]
-  
+    types: ["opened", "reopened"]
+
   workflow_dispatch:
 
 jobs:
