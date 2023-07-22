@@ -52,4 +52,4 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Test with Next.js
-        run: ${{ steps.detect-package-manager.outputs.manager }} run test
+        run: ${{ steps.detect-package-manager.outputs.manager }} run test:ci
